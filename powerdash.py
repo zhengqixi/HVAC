@@ -29,17 +29,17 @@ def get_all_data(start, end, variables=None):
     return data
 
 def convert_to_kwh(data):
-    return data.resample('60T', label='right').sum()/60
+    return data.resample('60T', label='right', closed='right').sum()/60
 
-def night_day_usage(data):
+def night_day_usage(data, peak_start, peak_end):
     peak_start= datetime.time(hour=9)
     peak_end = datetime.time(hour=21)
     on_peak = data.between_time(start_time=peak_start, end_time=peak_end)
     off_peak = data[~data.isin(on_peak)]
     on_peak_total = on_peak.sum()[0]
     off_peak_total = off_peak.sum()[0]
-    on_peak_daily= on_peak.groupby(on_peak.index.year, on_peak.index.month, on_peak.index.day).sum()
-    off_peak_daily = off_peak.groupby(on_peak.index.year, off_peak.index.month, off_peak.index.day).sum()
+    on_peak_daily= on_peak.resample('1D', label='right', closed='right').sum()
+    off_peak_daily = off_peak.resample('1D', label='right', closed='right').sum()
     on_peak_average = on_peak_daily.mean()[0]
     off_peak_average = off_peak_daily.mean()[0]
     return on_peak_daily, on_peak_average, on_peak_total, off_peak_daily, off_peak_average, off_peak_total
@@ -47,8 +47,8 @@ def night_day_usage(data):
 
 
 if __name__ == "__main__":
-    start = datetime.datetime(2015, 10, 10)
-    end = datetime.datetime(2015, 11, 10)
+    start = datetime.datetime(2015, 10, 1)
+    end = datetime.datetime(2015, 11, 30)
     raw_kw = get_all_data(start=start, end=end)
     kwh = {}
     for key, value in raw_kw.items():
@@ -56,6 +56,8 @@ if __name__ == "__main__":
     kwh_average_night = {}
     kwh_total_night = {}
     kwh_average_day= {}
-    kwh_total_day= {}
-    #for key, value in kwh.items():
+    peak_start= datetime.time(hour=9)
+    peak_end = datetime.time(hour=21)
+    for key, value in kwh.items():
+        night_day_usage(value, peak_start, peak_end)
 
