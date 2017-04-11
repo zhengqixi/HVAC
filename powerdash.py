@@ -54,10 +54,23 @@ if __name__ == "__main__":
     for key, value in raw_kw.items():
         kwh[key] = convert_to_kwh(value)
     kwh_average_night = {}
-    kwh_total_night = {}
     kwh_average_day= {}
     peak_start= datetime.time(hour=9)
     peak_end = datetime.time(hour=21)
     for key, value in kwh.items():
-        night_day_usage(value, peak_start, peak_end)
+        opd, opa, opt, fpd, fpa, fpt = night_day_usage(value, peak_start, peak_end)
+        print(key + ':\n')
+        print("Average on peak: " + str(opa) + '\n')
+        print("Average off peak: " + str(fpa) + '\n')
+        print("Total on peak: " + str(opt) + '\n')
+        print("Total off peak: " + str(fpt) + '\n')
+        print("Daily on peak:\n")
+        print(opd)
+        print('\n')
+        print("Daily off peak:\n")
+        print(fpd)
+        print('\n')
+
+
+
 
