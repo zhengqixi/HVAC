@@ -1,9 +1,18 @@
-def application(environ, start_response):
-    status = '200 OK'
-    output = b'hello\n'
+from flask import Flask, request, jsonify
+app = Flask(__name__)
 
-    response_headers = [('Content-type', 'text/plain'),
-                        ('Content-Length', str(len(output)))]
-    start_response(status, response_headers)
+@app.route('/', methods = ['GET'])
+def root():
+    start = request.args.get('start')
+    end = request.args.get('end')
+    data = {
+        'attempts': 'too many',
+        'start':start,
+        'end':end
+    }
+    resp = jsonify(data)
+    resp.status_code = 200
+    return resp
 
-    return [output]
+if __name__ == "__main__":
+    app.run()
