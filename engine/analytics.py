@@ -4,8 +4,8 @@ from io import StringIO
 import pandas as pd
 import requests
 import statsmodels.api as sm
+import powerdash_info
 
-from engine import powerdash_info
 
 
 def get_data(start, end, board_name=None):
