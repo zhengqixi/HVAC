@@ -1,7 +1,3 @@
-def application(environ, start_response):
-    status = '200 OK'
-    output = b'Goodbye World!\n'
-    response_headers = [('Content-type', 'text/plain'),
-                        ('Content-Length', str(len(output)))]
-    start_response(status, response_headers)
-    return [output]
+# Add the path to 3rd party django application and to django itself.
+from django.core.wsgi import get_wsgi_application
+application = get_wsgi_application()
