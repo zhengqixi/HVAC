@@ -1,6 +1,6 @@
 def application(environ, start_response):
     status = '200 OK'
-    output = 'wsgi.multithread = %s' % repr(environ['wsgi.multithread'])
+    output = b'hello\n'
 
     response_headers = [('Content-type', 'text/plain'),
                         ('Content-Length', str(len(output)))]
