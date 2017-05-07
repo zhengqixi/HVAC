@@ -1,3 +1,4 @@
-# Add the path to 3rd party django application and to django itself.
+import os
 from django.core.wsgi import get_wsgi_application
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "engine.settings")
 application = get_wsgi_application()
