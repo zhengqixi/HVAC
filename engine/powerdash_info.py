@@ -11,7 +11,21 @@ powerdash_name_to_dgm = {
     "3rd floor lighting and plugs": "x-pml:/diagrams/ud/41cooper/413tl.dgm",
     "retail": "x-pml:/diagrams/ud/41cooper/41 rt.dgm",
     "elevator": "x-pml:/diagrams/ud/41cooper/41elevator.dgm",
-    "overall utilities": "x-pml:/diagrams/ud/41cooper.dgm"}
+    "overall utilities": "x-pml:/diagrams/ud/41cooper.dgm"
+}
+powerdash_name_to_series = {
+    "7th floor mechanical, 8th and 9th lighting and plugs":'SATEC112KW',
+    "4th floor mechanical 2nd,3rd,5th lighting and plugs":"SATEC111KW",
+    "cellar power and lighting":"SATEC110KW",
+    "sub-cellar power and lighting":"SATEC19KW",
+    "roof mechanical":"SATEC18KW",
+    "7th floor lighting and plugs":"SATEC15KW",
+    "6th floor lighting and plugs":"SATEC14KW",
+    "4th floor lighting and plugs":"SATEC13KW",
+    "3rd floor lighting and plugs": "SATEC12KW",
+    "retail": "SATEC17KW",
+    "elevator": "SATEC11KW"
+}
 distribution_board_metadata = {
     "7th floor mechanical, 8th and 9th lighting and plugs": ["7th Floor Lights",
                                                              "7th Floor High Voltage Educational Equipment (Instron, Robotic Arm, etc...)",

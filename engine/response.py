@@ -1,37 +1,34 @@
 from flask import Flask, request, jsonify, redirect
 import powerdash_info
+import analytics
+import get_clean_data
+
 app = Flask(__name__)
 
 
-@app.route('/standard/<distribution_board>', methods = ['GET'])
-def standard(distribution_board):
+@app.route('/standard/<query>', methods=['GET'])
+def standard(query):
     start = request.args.get('start')
     end = request.args.get('end')
     data = {
-        'board': distribution_board,
-        'start':start,
-        'end':end
+        'start': start,
+        'end': end,
+        'request': distribution_board
     }
     resp = jsonify(data)
     resp.status_code = 200
     return resp
 
-@app.route('/night_day/<distribution_board>', methods = ['GET'])
-def night_day(distribution_board):
+
+@app.route('/night_day/<query>', methods=['GET'])
+def night_day(query):
     start = request.args.get('start')
     end = request.args.get('end')
     peak_start = request.args.get('peak_start')
     peak_end = request.args.get('peak_end')
-    data = {
-        'board': distribution_board,
-        'start':start,
-        'end':end
-    }
-    resp = jsonify(data)
-    resp.status_code = 200
-    return resp
 
-@app.route('/metadata', methods = ['GET'])
+
+@app.route('/metadata', methods=['GET'])
 def metadata():
     metadata = {
         'distribution boards': powerdash_info.distribution_boards,
@@ -42,8 +39,14 @@ def metadata():
     resp.status_code = 200
     return resp
 
+def total_usage(start, end):
+    pass
+def utility_comparison(start, end):
+    pass
+def distribution_board(board, start, end):
+    pass
 
-#For debugging and testing only
-#Absolutely do not use on server...
+# For debugging and testing only
+# Absolutely do not use on server...
 if __name__ == "__main__":
     app.run(debug=True)

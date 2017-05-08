@@ -25,13 +25,16 @@ def clean_data(data):
 def get_distribution_boards(start, end):
     data = {}
     for board in powerdash_info.distribution_boards:
-        board_data = get_data(start=start, end=end, board_name=key)
-        data[board] = board_data
+        board_data = get_data(start=start, end=end, board_name=board)
+        data[board] = board_data[powerdash_info.powerdash_name_to_series[board]]
     return data
 
 def get_overall(start, end):
     overall = get_data(start=start, end=end, board_name="overall utilities")
-    return overall
+    data = {}
+    data['Utility 1'] = overall['SRV1KW']
+    data['Utility 2'] = overall['SV2KW']
+    return data
 
 
 class cache_data:
@@ -41,3 +44,10 @@ class cache_data:
         self.end = end
         self.board = board
         self.data = data
+
+if __name__ == "__main__":
+    import datetime
+    start = datetime.datetime(year=2015, month=12, day=1)
+    end = datetime.datetime(year=2015, month=12, day=3)
+    data = get_distribution_boards(start=start, end=end)
+    print(data)
