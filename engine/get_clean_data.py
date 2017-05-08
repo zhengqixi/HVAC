@@ -1,7 +1,8 @@
+from io import StringIO
+
+import pandas as pd
 import powerdash_info
 import requests
-from io import StringIO
-import pandas as pd
 
 
 def get_data(start, end, board_name=None):
@@ -23,6 +24,7 @@ def get_data(start, end, board_name=None):
 def clean_data(data):
     data.fillna(value=0, method=None, inplace=True)
 
+
 def get_distribution_boards(start, end):
     data = {}
     for board in powerdash_info.distribution_boards:
@@ -31,6 +33,7 @@ def get_distribution_boards(start, end):
             return None
         data[board] = board_data
     return data
+
 
 def get_overall(start, end):
     overall = get_data(start=start, end=end, board_name="overall utilities")
@@ -43,15 +46,14 @@ def get_overall(start, end):
 
 
 class cache_data:
-
     def __init__(self, start, end, board, data):
         self.start = start
         self.end = end
         self.board = board
         self.data = data
 
+
 if __name__ == "__main__":
-    import datetime
     start = 1448946000000
     end = 1449118800000
     data = get_overall(start=start, end=end)

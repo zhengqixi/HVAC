@@ -80,4 +80,9 @@ def utility_comparison(boards, utilities):
 
 
 def distribution_board(board):
-    kwh = convert_to_kwh(board)
+    kwh = convert_to_kwh(board).resample('1D', label='right', closed='right').sum()
+    # trend, freq, noise = decompose(kwh)
+    max = kwh.max()
+    average = kwh.mean()
+    min = kwh.min()
+    return {'daily': kwh, 'max': max, 'mean': average, 'min': min}
