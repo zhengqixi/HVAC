@@ -33,11 +33,17 @@ def night_day(distribution_board):
 
 @app.route('/metadata', methods = ['GET'])
 def metadata():
-    resp = jsonify(powerdash_info.floor_metadata)
+    metadata = {
+        'distribution boards': powerdash_info.distribution_boards,
+        'distribution_board_metadata': powerdash_info.distribution_board_metadata,
+        'Utility metadata': powerdash_info.utility_metadata
+    }
+    resp = jsonify(metadata)
     resp.status_code = 200
     return resp
 
 
-
+#For debugging and testing only
+#Absolutely do not use on server...
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
