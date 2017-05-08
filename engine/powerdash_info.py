@@ -14,14 +14,14 @@ powerdash_name_to_dgm = {
     "overall utilities": "x-pml:/diagrams/ud/41cooper.dgm"
 }
 powerdash_name_to_series = {
-    "7th floor mechanical, 8th and 9th lighting and plugs":'SATEC112KW',
-    "4th floor mechanical 2nd,3rd,5th lighting and plugs":"SATEC111KW",
-    "cellar power and lighting":"SATEC110KW",
-    "sub-cellar power and lighting":"SATEC19KW",
-    "roof mechanical":"SATEC18KW",
-    "7th floor lighting and plugs":"SATEC15KW",
-    "6th floor lighting and plugs":"SATEC14KW",
-    "4th floor lighting and plugs":"SATEC13KW",
+    "7th floor mechanical, 8th and 9th lighting and plugs": 'SATEC112KW',
+    "4th floor mechanical 2nd,3rd,5th lighting and plugs": "SATEC111KW",
+    "cellar power and lighting": "SATEC110KW",
+    "sub-cellar power and lighting": "SATEC19KW",
+    "roof mechanical": "SATEC18KW",
+    "7th floor lighting and plugs": "SATEC15KW",
+    "6th floor lighting and plugs": "SATEC14KW",
+    "4th floor lighting and plugs": "SATEC13KW",
     "3rd floor lighting and plugs": "SATEC12KW",
     "retail": "SATEC17KW",
     "elevator": "SATEC11KW"
