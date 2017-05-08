@@ -40,7 +40,7 @@ def total_usage(boards, utilities):
         rollup[utility] = convert_to_kwh(series)
 
     for key, series in rollup.items():
-        rollup[key] = series.sum()[0]
+        rollup[key] = series.sum()
     rollup['Total'] = rollup['Utility 2'] + rollup['Utility 1']
     utility1_sum = 0
     utility2_sum = 0
