@@ -12,7 +12,7 @@ powerdash_name_to_dgm = {
     "retail": "x-pml:/diagrams/ud/41cooper/41 rt.dgm",
     "elevator": "x-pml:/diagrams/ud/41cooper/41elevator.dgm",
     "overall utilities": "x-pml:/diagrams/ud/41cooper.dgm"}
-floor_metadata = {
+distribution_board_metadata = {
     "7th floor mechanical, 8th and 9th lighting and plugs": ["7th Floor Lights",
                                                              "7th Floor High Voltage Educational Equipment (Instron, Robotic Arm, etc...)",
                                                              "6th Floor Plugs", "9th Floor Plugs"],
@@ -29,5 +29,24 @@ floor_metadata = {
     "3rd floor lighting and plugs": ["3rd Floor Plugs"],
     "retail": ["Preschool of the Arts"],
     "elevator": ["Express Elevator", "Local Elevator", "Cargo Elevator"],
-    "overall utilities": ["Utility Service 1", "Utility Service 2"]
 }
+
+utility_metadata = {
+    'Utility 1': ["6th floor lighting and plugs", "7th floor lighting and plugs", "elevator",
+                  "sub-cellar power and lighting", "retail", "Cooper Union Servers"],
+    'Utility 2': ["3rd floor lighting and plugs", "4th floor mechanical 2nd,3rd,5th lighting and plugs",
+                  "4th floor lighting and plugs", "7th floor mechanical, 8th and 9th lighting and plugs",
+                  "cellar power and lighting", "roof mechanical", "Cooper Union Server Room AC"]
+}
+
+distribution_boards = ["7th floor mechanical, 8th and 9th lighting and plugs",
+                       "4th floor mechanical 2nd,3rd,5th lighting and plugs",
+                       "cellar power and lighting",
+                       "sub-cellar power and lighting",
+                       "roof mechanical",
+                       "7th floor lighting and plugs",
+                       "6th floor lighting and plugs",
+                       "4th floor lighting and plugs",
+                       "3rd floor lighting and plugs",
+                       "retail",
+                       "elevator"]
