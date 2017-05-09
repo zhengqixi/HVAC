@@ -48,6 +48,12 @@ body {
     @media only screen and (max-width: 768px) {
       #standard-aggregate, #standard-utility {
         width: 100%; } }
+  #standard .standard-utility-comparison {
+    float: left;
+    width: 50%;
+    padding: 20px 0; }
+    #standard .standard-utility-comparison h1 {
+      font-size: 15px; }
 
 #daynight {
   width: 90%;
@@ -76,5 +82,11 @@ body {
     @media only screen and (max-width: 768px) {
       #daynight-aggregate-off_peak, #daynight-aggregate-on_peak, #daynight-utility-off_peak, #daynight-utility-on_peak {
         width: 100%; } }
+  #daynight .daynight-utility-comparison {
+    float: left;
+    width: 50%;
+    padding: 20px 0; }
+    #daynight .daynight-utility-comparison h1 {
+      font-size: 15px; }
 
 /*# sourceMappingURL=main.css.map */
