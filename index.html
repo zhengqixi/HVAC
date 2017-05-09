@@ -10,6 +10,35 @@
     <script src="js/index.js"></script>
   </head>
   <body>
-    <div id="container"></div>
+    <div class="tab">
+      <button class="tab-link active" onclick="openTab(event, 'standard')">Standard</button>
+      <button class="tab-link" onclick="openTab(event, 'daynight')">Day vs. Night</button>
+    </div>
+    <div class="tab-content" id="standard" style="display: block;">
+      <form id="standard-form">
+        <fieldset id="standard-form-fieldset">
+          <legend>Select a Time Range</legend>
+          <input id="standard-start" type="datetime-local" name="start">&nbsp;to&nbsp;<input id="standard-end" type="datetime-local" name="end">
+          <br /><br /><button id="standard-query" type="button">Query</button>
+        </fieldset>
+      </form>
+      <div id="standard-aggregate"></div>
+      <div id="standard-utility"></div>
+      <div id="standard-utility-comparison"></div>
+    </div>
+    <div class="tab-content" id="daynight">
+      <form id="daynight-form">
+        <fieldset id="daynight-form-fieldset">
+          <legend>Select a Time Range</legend>
+          <input id="daynight-start" type="datetime-local" name="start">&nbsp;to&nbsp;<input id="daynight-end" type="datetime-local" name="end"><br /><br />Select peak hours:<br /><br />
+          <input id="daynight-sh" class="peak" type="number" name="start-hour" min="0" max="24">:<input id="daynight-sm" class="peak" type="number" name="start-min" min="0" max="59">&nbsp;to&nbsp;<input id="daynight-eh" class="peak" type="number" name="end-hour" min="0" max="24">:<input id="daynight-em" class="peak" type="number" name="end-min" min="0" max="59">
+          <br /><br /><button id="daynight-query" type="button">Query</button>
+        </fieldset>
+      </form>
+      <div id="daynight-aggregate-off_peak"></div>
+      <div id="daynight-aggregate-on_peak"></div>
+      <div id="daynight-utility-off_peak"></div>
+      <div id="daynight-utility-on_peak"></div>
+    </div>
   </body>
 </html>
