@@ -20,7 +20,7 @@ def get_data(start, end, board_name=None, db=None):
             data = data.decode('ascii')
             data = json.loads(data)
             #deserializeJSON
-            if data['start'] == start and data['end'] == end:
+            if data['start'] <= start and data['end'] >= end:
                 csv_data = data['data']
                 csv_data = StringIO(csv_data)
                 cache_this = False
@@ -45,8 +45,10 @@ def get_data(start, end, board_name=None, db=None):
         to_cache = cache_data(start, end, board_name, return_data).to_string()
         db.set(board_name, to_cache)
 
+    start = pd.to_datetime(start/1000, unit='s')
+    end = pd.to_datetime(end/1000, unit='s')
 
-    return return_data
+    return return_data[start:end]
 
 
 def clean_data(data):
