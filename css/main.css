@@ -1,11 +1,80 @@
 body {
   margin: 0;
-  padding: 0; }
+  padding: 0;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, sans-serif; }
 
-#container {
-  min-width: 310px;
-  max-width: 600px;
-  height: 400px;
+.tab {
+  overflow: hidden;
+  background-color: #f1f1f1; }
+  .tab-link {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s; }
+    .tab-link:hover {
+      background-color: #ddd; }
+    .tab-link.active {
+      background-color: #ccc; }
+  .tab-content {
+    display: none; }
+
+#standard {
+  width: 90%;
   margin: 0 auto; }
+  @media only screen and (max-width: 768px) {
+    #standard {
+      width: 600px; } }
+  @media only screen and (max-width: 425px) {
+    #standard {
+      width: 310px; } }
+  #standard-form {
+    width: 100%; }
+    #standard-form-fieldset {
+      margin: 20px 0;
+      padding: 20px;
+      text-align: center; }
+      #standard-form-fieldset input {
+        margin: 0 10px; }
+  #standard-aggregate, #standard-utility {
+    float: left;
+    width: 50%;
+    height: 400px; }
+    @media only screen and (max-width: 768px) {
+      #standard-aggregate, #standard-utility {
+        width: 100%; } }
+
+#daynight {
+  width: 90%;
+  margin: 0 auto; }
+  @media only screen and (max-width: 768px) {
+    #daynight {
+      width: 600px; } }
+  @media only screen and (max-width: 425px) {
+    #daynight {
+      width: 310px; } }
+  #daynight-form {
+    width: 100%; }
+    #daynight-form-fieldset {
+      margin: 20px 0;
+      padding: 20px;
+      text-align: center; }
+      #daynight-form-fieldset input {
+        margin: 0 10px; }
+        #daynight-form-fieldset input.peak {
+          margin: 0 2px;
+          width: 40px; }
+  #daynight-aggregate-off_peak, #daynight-aggregate-on_peak, #daynight-utility-off_peak, #daynight-utility-on_peak {
+    float: left;
+    width: 50%;
+    height: 400px; }
+    @media only screen and (max-width: 768px) {
+      #daynight-aggregate-off_peak, #daynight-aggregate-on_peak, #daynight-utility-off_peak, #daynight-utility-on_peak {
+        width: 100%; } }
 
 /*# sourceMappingURL=main.css.map */
