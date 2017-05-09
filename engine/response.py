@@ -1,13 +1,13 @@
 import datetime
 import time
-
 import analytics
 import get_clean_data
 import powerdash_info
 from flask import Flask, request, jsonify
+import redis
 
 app = Flask(__name__)
-
+db = redis.Redis('localhost')
 
 class InvalidUsage(Exception):
     status_code = 400
@@ -49,8 +49,8 @@ def standard(query):
         raise InvalidUsage('start must come before end', payload={'start': start, 'end': end})
 
     if query == 'total_usage' or query == 'utility_comparison':
-        boards = get_clean_data.get_distribution_boards(start, end)
-        utilities = get_clean_data.get_overall(start, end)
+        boards = get_clean_data.get_distribution_boards(start, end, db)
+        utilities = get_clean_data.get_overall(start, end, db)
         if boards is None or utilities is None:
             raise InvalidUsage('No data for selected start and end times',
                                payload={'start': start, 'end': end, 'query': 'total_usage'})
@@ -66,7 +66,7 @@ def standard(query):
     if query not in powerdash_info.distribution_boards:
         raise InvalidUsage('Requested distribution board does not exist', payload={'requested': query})
 
-    board_data = get_clean_data.get_data(start, end, query)
+    board_data = get_clean_data.get_data(start, end, query, db)
     if board_data is None:
         raise InvalidUsage('No data for selected start and end times',
                            payload={'start': start, 'end': end, 'query': query})
@@ -113,8 +113,8 @@ def night_day(query):
     peak_start = datetime.time(hour=peak_start.tm_hour, minute=peak_start.tm_sec)
 
     if query == 'total_usage' or query == 'utility_comparison':
-        boards = get_clean_data.get_distribution_boards(start, end)
-        utilities = get_clean_data.get_overall(start, end)
+        boards = get_clean_data.get_distribution_boards(start, end, db)
+        utilities = get_clean_data.get_overall(start, end, db)
         if boards is None or utilities is None:
             raise InvalidUsage('No data for selected start and end times',
                                payload={'start': start, 'end': end, 'query': 'total_usage'})
@@ -145,7 +145,7 @@ def night_day(query):
     if query not in powerdash_info.distribution_boards:
         raise InvalidUsage('Requested distribution board does not exist', payload={'requested': query})
 
-    board_data = get_clean_data.get_data(start, end, query)
+    board_data = get_clean_data.get_data(start, end, query, db)
     if board_data is None:
         raise InvalidUsage('No data for selected start and end times',
                            payload={'start': start, 'end': end, 'query': query})
