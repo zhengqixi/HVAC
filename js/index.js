@@ -29,12 +29,12 @@ $(document).ready(function () {
     let peakSM = $('#daynight-sm').val();
     let peakEH = formatHour($('#daynight-eh').val());
     let peakEM = $('#daynight-em').val();
-    $.getJSON($baseURL + '/night_day/total_usage?start=' + start + '&end=' + end + '&peak_start' + peakSH + ":" + peakSM + "&peak_end" + peakEH + ":" + peakEM, function(response) {
+    $.getJSON($baseURL + '/night_day/total_usage?start=' + start + '&end=' + end + '&peak_start=' + peakSH + ":" + peakSM + "&peak_end=" + peakEH + ":" + peakEM, function(response) {
       $.each(response, function(k, v) {
         createPieChart('daynight-aggregate-' + k, 'Aggregate Power Usage (' + k + ')', 'Distribution Board', formatTotalUsageData(v), 'left');
       });
     });
-    $.getJSON($baseURL + '/night_day/utility_comparison?start=' + start + '&end=' + end + '&peak_start' + peakSH + ":" + peakSM + "&peak_end" + peakEH + ":" + peakEM, function(response) {
+    $.getJSON($baseURL + '/night_day/utility_comparison?start=' + start + '&end=' + end + '&peak_start=' + peakSH + ":" + peakSM + "&peak_end=" + peakEH + ":" + peakEM, function(response) {
       $.each(response, function(k, v) {
         createPieChart('daynight-utility-' + k, 'Utility Comparison (' + k + ')', 'Utility', formatUtilityComparison(v), 'center');
       });
