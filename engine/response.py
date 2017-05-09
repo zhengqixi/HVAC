@@ -1,13 +1,15 @@
 import datetime
 import time
+
 import analytics
 import get_clean_data
 import powerdash_info
-from flask import Flask, request, jsonify
 import redis
+from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 db = redis.Redis('localhost')
+
 
 class InvalidUsage(Exception):
     status_code = 400

@@ -1,8 +1,10 @@
-from io import StringIO
 import json
+from io import StringIO
+
 import pandas as pd
 import powerdash_info
 import requests
+
 
 def query_powerdash(start, end, board_name):
     payload = {'start': start, 'end': end, 'dgm': powerdash_info.powerdash_name_to_dgm[board_name],
@@ -12,6 +14,7 @@ def query_powerdash(start, end, board_name):
         return None
     return StringIO(data.text)
 
+
 def get_data(start, end, board_name=None, db=None):
     cache_this = True
     if db is not None:
@@ -19,7 +22,7 @@ def get_data(start, end, board_name=None, db=None):
         if data is not None:
             data = data.decode('ascii')
             data = json.loads(data)
-            #deserializeJSON
+            # deserializeJSON
             if data['start'] <= start and data['end'] >= end:
                 csv_data = data['data']
                 csv_data = StringIO(csv_data)
@@ -45,8 +48,8 @@ def get_data(start, end, board_name=None, db=None):
         to_cache = cache_data(start, end, board_name, return_data).to_string()
         db.set(board_name, to_cache)
 
-    start = pd.to_datetime(start/1000, unit='s')
-    end = pd.to_datetime(end/1000, unit='s')
+    start = pd.to_datetime(start / 1000, unit='s')
+    end = pd.to_datetime(end / 1000, unit='s')
 
     return return_data[start:end]
 
@@ -84,9 +87,8 @@ class cache_data:
 
     def to_string(self):
         data = self.data.to_csv(header=True, index_label='time')
-        to_cache = {'start':self.start, 'end':self.end, 'data':data}
+        to_cache = {'start': self.start, 'end': self.end, 'data': data}
         return json.dumps(to_cache, ensure_ascii=True)
-
 
 
 if __name__ == "__main__":
